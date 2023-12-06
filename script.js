@@ -1,92 +1,45 @@
-let butonlar = document.getElementById("buttons");
-let ekran = document.getElementById("sonuc");
+let result = document.getElementById("result");
+let buttons = document.querySelectorAll("button");
+// let preview =document.getElementById("preview")
+
+let displayValue = ""; // 10
 
 
-let ekranDeger = "0";
-let ilkDeger;
-let ikinciDeger;
-
-
-
-updateEkran()
-function updateEkran(){
-    ekran.value = ekranDeger;
+updateDisplay()
+function updateDisplay(){
+    result.value = displayValue;
 }
 
-butonlar.addEventListener("click",function(e){
-    let element = e.target;
 
-    if(!element.matches("button")){
-        return; // aşağıdaki kodları çalıştırma ve boş dön diyoruz
-    }
-
-
-    if(element.classList.contains("operator")){
-        // console.log("that is a operator",element.value)
-        if(element.value === "+"){
-            toplama();
+for(let button of buttons){
+    button.addEventListener("click",function(e){
+        let userInput = e.target.value;
+        if(userInput == "AC"){
+            displayValue = "";
+            updateDisplay()
+            return; // aşağıdaki kodları çalıştırma diyoruz, return demez isek ekrana AC değerini basar
         }
-        return;//değer olarak bunu dön ve aşağıdaki kodları çalıştırma;
-    }
+        // if(userInput == "+"){
+        //     firstValue = displayValue; // 10 = 10 // 20 = 20
+            // displayValue = parseInt(firstValue) + parseInt(displayValue);
+        //     console.log(displayValue)
+            //preview.value = firstValue; // deger = 10; // deger 20 
+        //     updateDisplay() // güncelle  
 
-    if(element.classList.contains("clear")){
-        temizle();
-        updateEkran()
-        return;
-    }
-
-    if(element.classList.contains("equals")){
-        console.log("equals",element.value);
-        return;
-    }
-
-    if(element.classList.contains("decimel")){
-        decimel();
-        updateEkran();
-        return;
-    }
-
-    let sayı = element.value;
-    ekrandaGoster(sayı)
-    updateEkran()
-});
-
-
-function decimel(){
-    if(!ekranDeger.includes(".")){
-        ekranDeger = ekranDeger + ".";
-    }
+        // }
+        // if(userInput == "-"){
+            // preview.value = firstValue;
+        //     updateDisplay();
+        // }
+        if(userInput == "="){
+            //10 + 10 + 120 + 120    / 3.5           = 4.67
+            const evalConvert = eval(displayValue)//= 4.67
+            displayValue  = evalConvert;
+            updateDisplay()
+            return;
+        }
+        displayValue = displayValue + userInput // 10 // 20
+        updateDisplay()
+    });
 }
-
-function ekrandaGoster(sayı){
-    // ekranDeger = sayı;
-
-    // ekranDeger = ekranDeger === "0" ? sayı : ekranDeger + sayı
-    if(ekranDeger === "0"){
-        ekranDeger = sayı;
-    }else{
-        ekranDeger = ekranDeger + sayı;
-    }
-
-}
-
-// function operators(){
-//     let artı = document.getElementById("artı").value;
-//     ilkDeger = ekranDeger;
-//     ekranDeger =  "0";
-//     updateEkran()
-//     console.log(ilkDeger)
-// }
-
-function toplama(){
-    ilkDeger = ekranDeger;
-    ekranDeger =  "0";
-    updateEkran()
-    console.log(toplam);  
-}
-
-function temizle(){
-    ekranDeger = "0";
-}
-
 
