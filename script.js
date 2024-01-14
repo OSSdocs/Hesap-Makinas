@@ -19,18 +19,6 @@ for(let button of buttons){
             updateDisplay()
             return; // aşağıdaki kodları çalıştırma diyoruz, return demez isek ekrana AC değerini basar
         }
-        // if(userInput == "+"){
-        //     firstValue = displayValue; // 10 = 10 // 20 = 20
-            // displayValue = parseInt(firstValue) + parseInt(displayValue);
-        //     console.log(displayValue)
-            //preview.value = firstValue; // deger = 10; // deger 20 
-        //     updateDisplay() // güncelle  
-
-        // }
-        // if(userInput == "-"){
-            // preview.value = firstValue;
-        //     updateDisplay();
-        // }
         if(userInput == "="){
             //10 + 10 + 120 + 120    / 3.5           = 4.67
             const evalConvert = eval(displayValue)//= 4.67
